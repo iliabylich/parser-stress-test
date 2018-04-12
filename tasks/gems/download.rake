@@ -1,6 +1,3 @@
-require 'open-uri'
-require 'zlib'
-
 class RemoteGem < Struct.new(:name, :version)
   include FileUtils
 
@@ -39,6 +36,11 @@ namespace :gems do
 
   desc 'Download all gems'
   task :download do
+    require 'bundler/setup'
+    require 'open-uri'
+    require 'zlib'
+    require 'concurrent'
+
     sh('mkdir -p gems')
 
     gzipped = open('https://rubygems.org/latest_specs.4.8.gz'); false
