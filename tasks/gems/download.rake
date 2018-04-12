@@ -37,12 +37,6 @@ namespace :gems do
     AbsoluteRenamer-system
   ]
 
-  desc 'Clear all downloaded gems'
-  task :clear do
-    sh('rm *.gem')
-    sh('rm -rf gems')
-  end
-
   desc 'Download all gems'
   task :download do
     sh('mkdir -p gems')
