@@ -6,7 +6,7 @@ class RubyFilesCollection
   def each_filepath
     return to_enum(:each_filepath) unless block_given?
 
-    File.open('filelist', 'r').each_line.map do |line|
+    File.open(@filepath, 'r').each_line.map do |line|
       filepath = line.chomp
 
       if File.file?(filepath)
