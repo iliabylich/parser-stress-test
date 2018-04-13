@@ -32,6 +32,7 @@ namespace :gems do
     -
     _
     AbsoluteRenamer-system
+    active_record_survey_api
   ]
 
   desc 'Download all gems'
@@ -64,5 +65,10 @@ namespace :gems do
     end
 
     pool.wait_for_termination
+  end
+
+  desc 'Removes all files except .rb'
+  task :cleanup do
+    sh('find . -type f ! -name *.rb -print0 | xargs -0 rm')
   end
 end
