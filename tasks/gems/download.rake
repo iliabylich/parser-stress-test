@@ -69,6 +69,8 @@ namespace :gems do
 
   desc 'Removes all files except .rb'
   task :cleanup do
-    sh('find . -type f ! -name *.rb -print0 | xargs -0 rm')
+    filelist = FileList.new('gems/**/*').exclude('gems/**/*.rb').select { |f| File.file?(f) }
+    filelist.each { |f| FileUtils.rm_f(f) }
+    puts "Removed #{filelist.length} files"
   end
 end
